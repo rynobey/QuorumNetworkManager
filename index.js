@@ -132,7 +132,6 @@ function handleRaftConsensus(){
       })
     } else if(result.option == 0){
       console.log('Quiting')
-      process.exit(0)
       return
     } else {
       mainLoop()
