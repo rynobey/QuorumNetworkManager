@@ -147,7 +147,7 @@ function handleRaftConsensus(){
 
 function mainLoop(){
   if(localIpAddress && checkForOtherProcesses == false) {
-    util.CheckPreviousCleanExit(function(err, done){
+    util.CheckForRunningProcesses(function(err, done){
       if(err) {console.log('ERROR:', err)}
       checkForOtherProcesses = done
       mainLoop()

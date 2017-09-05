@@ -119,7 +119,7 @@ function instanceAlreadyRunningMessage(processName){
     ' Please kill this instance by selecting option 5 before continuing\n')
 }
 
-function checkPreviousCleanExit(cb){
+function checkForRunningProcesses(cb){
   async.parallel({
     geth: function(callback){
       ps.lookup({
@@ -212,7 +212,6 @@ function generateNodeKey(result, cb){
   }, 1000)
 }
 
-// TODO: ports shouldn't be hard coded!!!
 function displayCommunicationEnode(result, cb){
   if(!result){
     return cb({error: 'parameter not defined, could not get ip address'}, null)
@@ -234,7 +233,6 @@ function displayCommunicationEnode(result, cb){
   })
 }
 
-// TODO: ports shouldn't be hard coded!!!
 function displayEnode(result, cb){
   var options = {encoding: 'utf8', timeout: 10*1000};
   var child = exec('bootnode -nodekey Blockchain/geth/nodekey -writeaddress', options)
@@ -275,7 +273,7 @@ exports.CreateWeb3Connection = createWeb3Connection;
 exports.ConnectToPeer = connectToPeer;
 exports.KillallGethConstellationNode = killallGethConstellationNode;
 exports.GetNewGethAccount = getNewGethAccount;
-exports.CheckPreviousCleanExit = checkPreviousCleanExit
+exports.CheckForRunningProcesses = checkForRunningProcesses
 exports.CreateQuorumConfig = createQuorumConfig
 exports.CreateGenesisBlockConfig = createGenesisBlockConfig
 exports.IsWeb3RPCConnectionAlive = isWeb3RPCConnectionAlive
