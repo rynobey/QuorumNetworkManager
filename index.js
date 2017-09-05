@@ -22,6 +22,7 @@ var consensus = null //quorumChain or raft
 
 function handleConsensusChoice(){
   console.log('Please select an option:\n1) Raft\n2) QuorumChain\n5) Kill all geth and constellation')
+  console.log('0) Quit');
   prompt.get(['option'], function(err, answer){
     if(answer.option == 1){
       consensus = 'raft'
@@ -36,7 +37,12 @@ function handleConsensusChoice(){
         raftNetwork = null
         communicationNetwork = null;
         mainLoop()
-      })      
+      })
+    } else if(answer.option == 0){
+      console.log('Quiting')
+      return
+    } else {
+      mainLoop()
     }
   })
 }
